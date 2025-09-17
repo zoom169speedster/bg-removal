@@ -7,7 +7,8 @@ const connectDB = async () => {
     })
     
     
-    await mongoose.connect(`${process.env.MONGODB_URI}/bg-removal`)
+    // await mongoose.connect(`${process.env.MONGODB_URI}/bg-removal`)
+    await mongoose.connect(`${process.env.MONGODB_URI}`)
 
 }
 
