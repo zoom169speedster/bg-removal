@@ -16,7 +16,7 @@ const removeBgImage = async (req, res) => {
         }
 
         if(user.creditBalance === 0) {
-            return res.json({success: false, message: 'No credit balance', creditBalance: user.credit})
+            return res.json({success: false, message: 'No credit balance', creditBalance: user.creditBalance})
         }
 
         const imagePath = req.file.path;
@@ -31,13 +31,13 @@ const removeBgImage = async (req, res) => {
                 'x-api-key': process.env.CLIPDROP_API,
             },
             responseType: 'arraybuffer'
-        })     
+        })
 
         const base64Image = Buffer.from(data, 'binary').toString('base64')
         const resultImage = `data:${req.file.mimetype};base64,${base64Image}`
 
         await userModel.findByIdAndUpdate(user._id, {creditBalance: user.creditBalance-1})
-        res.json({success: true, resultImage, creditBalance: user.creditBalance-1, message: 'background-removed'})
+        res.json({success: true, resultImage, creditBalance: user.creditBalance-1, message: 'background Removed'})
                 
     } catch (error) {
         console.log(error.message)
